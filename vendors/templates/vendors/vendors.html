@@ -1,0 +1,57 @@
+{% extends "foodlist/base.html" %}
+{% block content %}
+    <div class='container=fluid'>
+        <div class='row mt-4'>
+            <div class='col-2'>
+                <a class='btn btn-success ml-4' href="{% url 'vendor-create' %}">Add Vendor</a>
+            </div>
+            <div class='col-8 d-flex justify-content-center'>
+                <h1 class='h1 mb-5'>Vendors</h1>
+            </div>
+        </div>
+
+        {% if messages %}
+        <div class='row d-flex justify-content-center''>
+            <div class='col-6' >
+                <ul class='alert-success'>
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        {% for vendor in Vendors %}
+        <div class='row d-flex justify-content-center'>
+            <div class='col-6 bg bg-light border'>
+                <div class='row'>
+                    <div class='col-12 d-flex justify-content-center'>
+                        <h2>{{ vendor.company_name }}</h2>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-12 d-flex'>
+                        <p class='col-6 text-center'>Contact: {{ vendor.rep_name }}</p>
+                        <p class='col-6 text-center'>Phone: {{ vendor.company_number }}</p>
+                    </div>   
+                </div>
+                <div class='row'>
+                    <div class='col-12 d-flex mb-2 justify-content-center'>
+                        <a class='btn btn-sm btn-warning mr-3' href="#">Edit Vendor</a>
+                        <a class='btn btn-sm btn-danger' href="{% url 'vendor-delete' vendor.id %}">Delete Vendor</a>
+                    </div>   
+                </div>
+                
+            </div>
+            
+        </div>
+        {% endfor %}
+
+
+    </div>
+    
+
+
+
+
+{% endblock %}
