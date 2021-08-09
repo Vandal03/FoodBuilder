@@ -28,6 +28,7 @@ def create_vendor(request):
 def edit_vendor(request, vendor_id):
     if request.method == "POST":
         Vendor.objects.filter(id=vendor_id).update(company_name=request.POST.get('company_name'), company_number=request.POST.get('company_number'), rep_name=request.POST.get('rep_name'))
+        messages.success(request, 'Vendor was updated successfully')
         return redirect('vendors-home')
     else:
         context ={
