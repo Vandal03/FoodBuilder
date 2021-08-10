@@ -4,6 +4,6 @@ from . import views as ingredients_views
 
 
 urlpatterns = [
-    path()
+    path('', ingredients_views.ingredients, name='ingredients-home')
     
 ]
