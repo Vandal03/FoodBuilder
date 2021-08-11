@@ -4,7 +4,7 @@
 <div class='container=fluid'>
     <div class='row mt-4'>
         <div class='col-2'>
-            <a class='btn btn-success ml-4' href="#">Add Ingredient</a>
+            <a class='btn btn-success ml-4' href="{% url 'ingredient-create' %}">Add Ingredient</a>
         </div>
         <div class='col-8 d-flex justify-content-center'>
             <h1 class='h1 mb-5'>Ingredients</h1>
@@ -22,18 +22,23 @@
         </div>
     </div>
     {% endif %}
-    {% for ingredient in ingredients %}
+    {% for ingredient in ingredient_info %}
     <div class='row d-flex justify-content-center'>
         <div class='col-6 bg bg-light border'>
             <div class='row'>
                 <div class='col-12 d-flex justify-content-center mb-3 mt-3'>
-                    <h2>{{ ingredient.name }}</h2>
+                    <h2>{{ ingredient.ingredient_name }}</h2>
                 </div>
             </div>
             <div class='row'>
                 <div class='col-12 d-flex'>
-                    <p class='col-6 text-center'>Fake Data</p>
-                    <p class='col-6 text-center'>Fake Data</p>
+                    <label class='col-6 text-center'>Vendor: {{ ingredient.vendor.company_name }}</label>
+                    <label class='col-6 text-center'>Serving Size: {{ ingredient.ingredient_serving_size }} {{ ingredient.unit_of_measure.abbr }} </label>
+                </div>   
+            </div>
+            <div class='row'>
+                <div class='col-12 d-flex'>
+                    <label class='col-6 text-center'>Serving Cost: ${{ ingredient.serving_size_cost }}</label>
                 </div>   
             </div>
             <div class='row'>
