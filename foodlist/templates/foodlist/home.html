@@ -26,14 +26,14 @@
         <div class='col-6 bg bg-light border'>
             <div class='row'>
                 <div class='col-12 d-flex justify-content-center mb-3 mt-3'>
-                    <h2>{{ food_item.food_item_name}}</h2>
+                    <h2>{{ food_item.food_item.food_item_name}}</h2>
                 </div>
             </div>
             <div class='row'>
                 <div class='col-12 d-flex'>
-                    <label class='col-4 text-center'>Sell At: ${{ food_item.sell_at }}</label>
-                    <label class='col-4 text-center'>Cost: ${{ food_item.cost }} </label>
-                    <label class='col-4 text-center'>UPC: {{ food_item.upc }}</label>
+                    <label class='col-4 text-center'>Sell At: ${{ food_item.food_item.sell_at }}</label>
+                    <label class='col-4 text-center'>Cost: ${{ food_item.food_item.cost }} </label>
+                    <label class='col-4 text-center'>UPC: {{ food_item.food_item.upc }}</label>
                 </div>   
             </div>
             <div class='row'>
@@ -44,7 +44,7 @@
             <div class='row'>
                 <div class='col-12 d-flex'>
                     <ul class='col-4 '>
-                        {% for ingredient in food_item.ingredients.all %}
+                        {% for ingredient in food_item.ingredient_item.all %}
                         <li>{{ ingredient.ingredient_name }} QTY: {{ ingredient.quantity }}</li>
                         {% endfor %}
                     </ul>

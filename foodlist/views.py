@@ -7,7 +7,7 @@ from ingredients.models import Ingredient
 def home(request):
     
     context = {
-        'food_items' : FoodItem.objects.all().prefetch_related('ingredients')
+        'food_items' : Quantities.objects.all().prefetch_related('food_item', 'ingredient_item')
         
     }
     return render(request, 'foodlist/home.html', context)
