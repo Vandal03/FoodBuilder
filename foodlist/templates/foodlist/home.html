@@ -1,6 +1,69 @@
 {% extends "foodlist/base.html" %}
 {% block content %}
-    <h1 class="jumbotron">Stuff</h1>
+<div class='container=fluid'>
+    <div class='row mt-4'>
+        <div class='col-2'>
+            <a class='btn btn-success ml-4' href="{% url 'ingredient-create' %}">Add Ingredient</a>
+        </div>
+        <div class='col-8 d-flex justify-content-center'>
+            <h1 class='h1 mb-5'>Food Items</h1>
+        </div>
+    </div>
+
+    {% if messages %}
+    <div class='row d-flex justify-content-center'>
+        <div class='col-6' >
+            <ul class='alert-success'>
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    {% for food_item in food_items %}
+    <div class='row d-flex justify-content-center'>
+        <div class='col-6 bg bg-light border'>
+            <div class='row'>
+                <div class='col-12 d-flex justify-content-center mb-3 mt-3'>
+                    <h2>{{ food_item.food_item_name}}</h2>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-12 d-flex'>
+                    <label class='col-4 text-center'>Sell At: ${{ food_item.sell_at }}</label>
+                    <label class='col-4 text-center'>Cost: ${{ food_item.cost }} </label>
+                    <label class='col-4 text-center'>UPC: {{ food_item.upc }}</label>
+                </div>   
+            </div>
+            <div class='row'>
+                <div class='col-12 d-flex'>
+                    <label class='col-4 text-center '>Ingredients:</label>
+                </div>   
+            </div>
+            <div class='row'>
+                <div class='col-12 d-flex'>
+                    <ul class='col-4 '>
+                        {% for ingredient in food_item.ingredients.all %}
+                        <li>{{ ingredient.ingredient_name }} QTY: {{ ingredient.quantity }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>   
+            </div>
+            <div class='row'>
+                <div class='col-12 d-flex mb-2 justify-content-center'>
+                    <a class='btn btn-sm btn-warning mr-3' href="#">Edit Food Item</a>
+                    <a class='btn btn-sm btn-danger' href="#">Delete Food Item</a>
+                </div>   
+            </div>
+            
+        </div>
+        
+    </div>
+    {% endfor %}
+
+
+</div>
     
 
 

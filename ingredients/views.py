@@ -7,7 +7,7 @@ from django.contrib import messages
 
 def ingredients(request):
     context = {
-        'ingredient_info' : Ingredient.objects.select_related('unit_of_measure', 'vendor'),
+        'ingredient_info' : Ingredient.objects.select_related('unit_of_measure', 'vendor').all(),
         
     }
     return render(request, 'ingredients/ingredients.html', context)
@@ -43,6 +43,6 @@ def edit_ingredient(request, ingredient_id):
             'unit_of_measures' : UnitOfMeasure.objects.all(),
             'ingredient_info' : Ingredient.objects.filter(id = ingredient_id).select_related('unit_of_measure', 'vendor').get()
         }
-        # print(context)
+        
         return render(request, 'ingredients/edit_ingredient.html', context)
     
