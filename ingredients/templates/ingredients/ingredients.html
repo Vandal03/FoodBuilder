@@ -43,8 +43,8 @@
             </div>
             <div class='row'>
                 <div class='col-12 d-flex mb-2 justify-content-center'>
-                    <a class='btn btn-sm btn-warning mr-3' href="#">Edit Ingredient</a>
-                    <a class='btn btn-sm btn-danger' href="#">Delete Ingredient</a>
+                    <a class='btn btn-sm btn-warning mr-3' href="{% url 'ingredient-edit' ingredient.id %}">Edit Ingredient</a>
+                    <a class='btn btn-sm btn-danger' href="{% url 'ingredient-delete' ingredient.id %}">Delete Ingredient</a>
                 </div>   
             </div>
             
