@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
-from .models import FoodItem, Quantities
+from .models import FoodItem, Recipes
 from ingredients.models import Ingredient
+
 
 # Create your views here.
 def home(request):
-    
     context = {
-        'food_items' : Quantities.objects.all().prefetch_related('food_item', 'ingredient_item')
-        
+       'foods' : FoodItem.objects.all(),
+       'recipes' : Recipes.objects.prefetch_related('ingredient_item', 'food_item').all()
     }
+    
+
     return render(request, 'foodlist/home.html', context)

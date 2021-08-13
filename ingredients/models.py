@@ -16,4 +16,4 @@ class Ingredient(models.Model):
     serving_size_cost = models.DecimalField(default=0.00, max_digits=10, decimal_places=2)
 
 
-   
+  
