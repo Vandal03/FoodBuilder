@@ -11,5 +11,8 @@ def home(request):
        'recipes' : Recipes.objects.prefetch_related('ingredient_item', 'food_item').all()
     }
     
-
     return render(request, 'foodlist/home.html', context)
+
+
+def create_food_item(request):
+   return render(request, 'foodlist/create.html')

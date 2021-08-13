@@ -3,7 +3,7 @@
 <div class='container=fluid'>
     <div class='row mt-4'>
         <div class='col-2'>
-            <a class='btn btn-success ml-4' href="#">Add Food Item</a>
+            <a class='btn btn-success ml-4' href="{% url 'foodlist-create' %}">Add Food Item</a>
         </div>
         <div class='col-8 d-flex justify-content-center'>
             <h1 class='h1 mb-5'>Food Items</h1>
@@ -37,17 +37,22 @@
                     <label class='col-4 text-center'>UPC: {{ food.upc }} </label>
                 </div>   
             </div>
-            <div class='row'>
-                <div class='col-12 d-flex'>
-                    <label class='col-4 text-center '>Ingredients:</label>
+            <!-- <div class='row'>
+                <div class='col-12 justify-content-center d-flex'>
+                    <label class='col-4 mt-4 font-weight-bold text-center '>Ingredients:</label>
                 </div>   
-            </div>
-            <div class='row'>
+            </div> -->
+            <div class='row '>
+                <div class="col-12 text-center">
+                    <button class="btn mb-4" type="button" data-toggle="collapse" data-target="#{{food.food_item_name|truncatechars:3}}" aria-expanded="false" aria-controls="{{food.food_item_name|truncatechars:3}}">
+                        Ingredients <i class="fas fa-bars"></i>
+                    </button>
+                </div>
                 <div class='col-12 d-flex'>
-                    <ul class='col-4'>
+                    <ul class='col-12 text-center list-group mb-4 collapse' id='{{food.food_item_name|truncatechars:3}}'>
                         {% for i in recipes %}
                             {% if food.id == i.food_item_id %}
-                        <li>{{ i.ingredient_item.ingredient_name }} QTY: {{ i.serving_quantity }}</li>
+                        <li class='list-group-item card card-body'>{{ i.ingredient_item.ingredient_name }} QTY: {{ i.serving_quantity }}</li>
                             {% endif %}
                         {% endfor %}
                     </ul>
