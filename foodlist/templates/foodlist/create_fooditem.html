@@ -1,0 +1,43 @@
+{% extends "foodlist/base.html" %}
+
+{% block content %}
+
+<div class='row mt-5 d-flex justify-content-center'>
+    <div class='col-4'>
+        <form method='POST'>
+            {% csrf_token %}
+            <div class='form-group'>
+                <label id='cost' for='cost' class='font-weight-bold'>Cost: $0.00</label>
+                <input hidden placeholder="Enter the Representative's Name" type='number' class='form-control' name='rep_name' id='rep_name'>
+            </div>
+            <div class='form-group'>
+                <label id='upc' for='upc' class='font-weight-bold'>UPC: {{upc}}</label>
+                <input hidden  value={{upc}} type='number' class='form-control' name='rep_name' id='rep_name'>
+            </div>
+            <div class='form-group'>
+                <label for='food_item_name' class='font-weight-bold'>Food Item Name:</label>
+                <input required placeholder="Enter the Food Item's Name" type='text' class='form-control' name ='food_item_name' id='food_item_name'>
+            </div>
+            <div class='form-group'>
+                <label for='sell_at' class='font-weight-bold'>Sell At:</label>
+                <input placeholder="Enter the Sell At Price" type='number' min='0.00' step='0.01' class='form-control' name='sell_at' id='sell_at'>
+            </div>
+            <div class='form-group'>
+                <label class='font-weight-bold'>Select Ingredients: </label>
+            </div>
+            <div class='overflow-auto row justify-content-center mb-3' style="height: 350px;">
+                {% for ingredient in ingredients %}
+                <div class='form-group border border-dark rounded d-flex d-inline col-11 align-items-center p-3 bg-light w-90 ml-1 mr-1' >
+                    <label id='' for='upc' class='font-weight-bold col-10 '>{{ingredient.ingredient_name}} - Serving Size: {{ingredient.ingredient_serving_size}} {{ingredient.unit_of_measure.abbr}} </label>
+                    <input onClick="test(this.value, this.data-cost)" value=0 type='number' min=0 class='form-control col-2' name='rep_name' id='rep_name' data-cost='{{ingredient.serving_size_cost}}'>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-success">Create Food Item</button>
+            <a class="btn btn-warning" href="{% url 'foodlist-home' %}">Cancel</a>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
