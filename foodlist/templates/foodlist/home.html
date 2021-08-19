@@ -37,15 +37,11 @@
                     <label class='col-4 text-center'>UPC: {{ food.upc }} </label>
                 </div>   
             </div>
-            <!-- <div class='row'>
-                <div class='col-12 justify-content-center d-flex'>
-                    <label class='col-4 mt-4 font-weight-bold text-center '>Ingredients:</label>
-                </div>   
-            </div> -->
             <div class='row '>
                 <div class="col-12 text-center">
+                    <!-- Update unique value for id -->
                     <button class="btn mb-4" type="button" data-toggle="collapse" data-target="#{{food.food_item_name|truncatechars:3}}" aria-expanded="false" aria-controls="{{food.food_item_name|truncatechars:3}}">
-                        Ingredients   <span>    </span><i class="fas fa-bars"></i>
+                        Ingredients<i class="fas fa-bars"></i>
                     </button>
                 </div>
                 <div class='col-12 d-flex'>

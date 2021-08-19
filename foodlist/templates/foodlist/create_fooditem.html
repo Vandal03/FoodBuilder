@@ -8,11 +8,11 @@
             {% csrf_token %}
             <div class='form-group'>
                 <label id='cost' for='cost' class='font-weight-bold'>Cost: $0.00</label>
-                <input hidden placeholder="Enter the Representative's Name" type='number' class='form-control' name='rep_name' id='rep_name'>
+                <input hidden placeholder="Enter the Representative's Name" type='number' value=0.00 min=0.00 step=0.01 class='form-control' name='cost_input' id='cost_input'>
             </div>
             <div class='form-group'>
                 <label id='upc' for='upc' class='font-weight-bold'>UPC: {{upc}}</label>
-                <input hidden  value={{upc}} type='number' class='form-control' name='rep_name' id='rep_name'>
+                <input hidden  value={{upc}} type='number' class='form-control' name='upc' id='upc'>
             </div>
             <div class='form-group'>
                 <label for='food_item_name' class='font-weight-bold'>Food Item Name:</label>
@@ -28,8 +28,8 @@
             <div class='overflow-auto row justify-content-center mb-3' style="height: 350px;">
                 {% for ingredient in ingredients %}
                 <div class='form-group border border-dark rounded d-flex d-inline col-11 align-items-center p-3 bg-light w-90 ml-1 mr-1' >
-                    <label id='' for='upc' class='font-weight-bold col-10 '>{{ingredient.ingredient_name}} - Serving Size: {{ingredient.ingredient_serving_size}} {{ingredient.unit_of_measure.abbr}} </label>
-                    <input onClick="test(this.value, this.data-cost)" value=0 type='number' min=0 class='form-control col-2' name='rep_name' id='rep_name' data-cost='{{ingredient.serving_size_cost}}'>
+                    <label id='{{ingredient.ingredient_name|cut:" "}}{{ingredient.id}}label' for='{{ingredient.ingredient_name|truncatechars:3|add:ingredient.id}}' class='font-weight-bold col-10 '>{{ingredient.ingredient_name}} - Serving Size: {{ingredient.ingredient_serving_size}} {{ingredient.unit_of_measure.abbr}} </label>
+                    <input onClick="calculateCost(this.getAttribute('data-cost'), this.getAttribute('data-name'), this.getAttribute('value'), document.getElementById('cost_input').value)" value=0 type='number' min=0 class='form-control col-2' name='{{ingredient.ingredient_name|cut:" "}}{{ingredient.id}}' id='{{ingredient.ingredient_name|cut:" "}}{{ingredient.id}}' data-cost='{{ingredient.serving_size_cost}}' data-name='{{ingredient.ingredient_name}}'>
                 </div>
                 {% endfor %}
             </div>
@@ -38,6 +38,7 @@
         </form>
     </div>
 </div>
+
 
 
 {% endblock %}
